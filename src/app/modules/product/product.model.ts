@@ -9,23 +9,23 @@ const productSchema = new Schema<IProduct>(
     },
     brand: {
       type: String,
-      required: [true, 'Brand name is required'],
+      required: [true, 'Brand is required'],
     },
     price: {
       type: Number,
-      required: [true, 'price must be required'],
+      required: [true, 'Price must be required'],
     },
     type: {
       type: String,
       enum: {
         values: ['Mountain', 'Road', 'Hybrid', 'BMX', 'Electric'],
-        message: '*{VALUE}* is not valid.',
+        message: '{VALUE} is not valid.',
       },
     },
     description: {
       type: String,
       required: [true, 'Give a short description'],
-      maxlength: [500, 'Description too long, needed within 500 characters'],
+      maxlength: [200, 'Description too long, needed within 200 characters'],
     },
     quantity: {
       type: Number,
@@ -40,4 +40,4 @@ const productSchema = new Schema<IProduct>(
   { timestamps: true },
 );
 
-export const Product = model('Product', productSchema);
+export const Product = model<IProduct>('Product', productSchema);

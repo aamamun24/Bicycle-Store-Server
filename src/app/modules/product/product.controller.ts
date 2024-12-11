@@ -1,12 +1,12 @@
 import { Request, Response } from 'express';
 import { ProductServices } from './product.service';
+import productValidationSchema from './product.validation';
 
 // Create a Bicycle
 const createProduct = async (req: Request, res: Response) => {
   try {
-    const product = req.body;
-
-    const result = await ProductServices.createProduct(product);
+    const productData = productValidationSchema.parse(req.body);
+    const result = await ProductServices.createProduct(productData);
 
     res.status(200).json({
       message: 'Bicycle created successfully',
@@ -99,11 +99,11 @@ const updateBicycle = async (req: Request, res: Response) => {
 const deleteBicycle = async (req: Request, res: Response) => {
   try {
     const { productId } = req.params;
-    const result = await ProductServices.deleteBicycle(productId);
+    await ProductServices.deleteBicycle(productId);
     res.status(200).json({
       message: 'Bicycle deleted successfully',
       status: true,
-      data: result,
+      data: {},
     });
   } catch (error: any) {
     res.status(500).json({
