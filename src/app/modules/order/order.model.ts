@@ -4,7 +4,7 @@ import { IOrder } from './order.interface';
 const orderSchema = new Schema<IOrder>(
   {
     email: {
-      String,
+      type: String,
       required: [true, 'Email is required'],
     },
     product: {
