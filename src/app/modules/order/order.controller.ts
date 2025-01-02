@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import orderValidationSchema from './order.validation';
 import { Product } from '../product/product.model';
 import { Order } from './order.model';
+import { OrderService } from './order.service';
 
 const createOrder = async (req: Request, res: Response) => {
   try {
@@ -46,6 +47,25 @@ const createOrder = async (req: Request, res: Response) => {
   }
 };
 
+const calculateTotalRevenue = async (req: Request, res: Response) => {
+  try {
+    const totalRevenue = await OrderService.calculateRevenue();
+
+    res.status(200).json({
+      message: 'Revenue calculated successfully',
+      success: true,
+      data: { totalRevenue },
+    });
+  } catch (error: any) {
+    res.status(500).json({
+      message: 'Failed to calculate revenue',
+      success: false,
+      error: error,
+    });
+  }
+};
+
 export const OrderController = {
   createOrder,
+  calculateTotalRevenue,
 };
