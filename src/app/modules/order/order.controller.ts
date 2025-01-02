@@ -4,24 +4,26 @@ import { Product } from '../product/product.model';
 import { Order } from './order.model';
 import { OrderService } from './order.service';
 
-const createOrder = async (req: Request, res: Response) => {
+const createOrder = async (req: Request, res: Response): Promise<void> => {
   try {
     const orderData = orderValidationSchema.parse(req.body);
 
     const product = await Product.findById(orderData.product);
 
     if (!product) {
-      return res.status(404).json({
+      res.status(404).json({
         message: 'Product not found',
         success: false,
       });
+      return;
     }
 
     if (product.quantity < orderData.quantity) {
-      return res.status(400).json({
+      res.status(400).json({
         message: 'Insufficient stock',
         success: false,
       });
+      return;
     }
 
     const totalPrice = product.price * orderData.quantity;
