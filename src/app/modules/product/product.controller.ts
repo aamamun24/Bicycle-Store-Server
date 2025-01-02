@@ -18,6 +18,7 @@ const createProduct = async (req: Request, res: Response) => {
       message: error.message || 'Something went wrong!',
       success: false,
       error: error,
+      stack: error.stack,
     });
   }
 };
@@ -50,6 +51,7 @@ const getAllBicycle = async (req: Request, res: Response) => {
       message: error.message || 'Failed to retrieve products',
       status: false,
       error,
+      stack: error.stack,
     });
   }
 };
@@ -70,6 +72,7 @@ const getSingleBicycle = async (req: Request, res: Response) => {
       message: error.message || 'Failed to retrieve products',
       status: false,
       error,
+      stack: error.stack,
     });
   }
 };
@@ -91,6 +94,7 @@ const updateBicycle = async (req: Request, res: Response) => {
       message: error.message || 'Something went wrong!',
       status: false,
       error,
+      stack: error.stack,
     });
   }
 };
@@ -110,6 +114,7 @@ const deleteBicycle = async (req: Request, res: Response) => {
       message: error.message || 'Failed to delete',
       status: false,
       error,
+      stack: error.stack,
     });
   }
 };

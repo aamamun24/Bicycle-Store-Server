@@ -4,6 +4,7 @@ import { Product } from '../product/product.model';
 import { Order } from './order.model';
 import { OrderService } from './order.service';
 
+// Create order
 const createOrder = async (req: Request, res: Response): Promise<void> => {
   try {
     const orderData = orderValidationSchema.parse(req.body);
@@ -45,10 +46,12 @@ const createOrder = async (req: Request, res: Response): Promise<void> => {
       message: error.message || 'Something went wrong!',
       success: false,
       error: error,
+      stack: error.stack,
     });
   }
 };
 
+// Calculate Revenue
 const calculateTotalRevenue = async (req: Request, res: Response) => {
   try {
     const totalRevenue = await OrderService.calculateRevenue();
@@ -63,6 +66,7 @@ const calculateTotalRevenue = async (req: Request, res: Response) => {
       message: 'Failed to calculate revenue',
       success: false,
       error: error,
+      stack: error.stack,
     });
   }
 };
