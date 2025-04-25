@@ -11,9 +11,7 @@ const app: Application = express();
 app.use(express.json());
 app.use(
   cors({
-    origin: [
-      'http://localhost:5173', // Local development
-    ],
+    origin: ['https://spin-cycle24.vercel.app'],
     credentials: true,
   }),
 );
