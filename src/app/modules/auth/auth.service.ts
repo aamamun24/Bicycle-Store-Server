@@ -40,12 +40,14 @@ const loginUser = async (payload: ILoginUser) => {
 
   const jwtPayload = {
     userId: user?._id,
+    name: user?.name,
     email: user?.email,
     role: user?.role,
   };
 
-  const token = jwt.sign(jwtPayload, config.jwt_access_token_secret as string, {
-    expiresIn: '1d',
+  const token = jwt.sign(jwtPayload, config.jwt_token_secret as string, {
+    // expiresIn: config.jwt_token_expires_in as string,
+    expiresIn: '7d',
   });
   return { token };
 };
