@@ -41,7 +41,11 @@ const createOrder = async (req: Request, res: Response): Promise<void> => {
     const transactionId = uuidv4();
 
     // 6. Initialize payment
-    const sslcz = new SSLCommerz(store_id, store_passwd, is_live);
+    const sslcz = new SSLCommerz(
+      store_id as string,
+      store_passwd as string,
+      is_live,
+    );
     const paymentData = {
       total_amount: totalPrice,
       currency: 'BDT',
