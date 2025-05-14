@@ -20,7 +20,7 @@ const moduleRoutes = [
     route: OrderRoutes,
   },
   {
-    path: '/users', // Add this line
+    path: '/users',
     route: UserRoutes,
   },
 ];

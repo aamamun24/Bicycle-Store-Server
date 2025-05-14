@@ -143,8 +143,8 @@ const deleteOrder = catchAsync(async (req, res) => {
 });
 
 const getUserOrders = catchAsync(async (req, res) => {
-  const userId = req.user.userId;
-  const orders = await OrderService.getUserOrders(userId);
+  const email = req.user.email;
+  const orders = await OrderService.getUserOrders(email);
   sendResponse(res, {
     success: true,
     message: 'User orders retrieved successfully',

@@ -24,8 +24,8 @@ const deleteOrder = async (orderId: string) => {
   }
 };
 
-const getUserOrders = async (userId: string) => {
-  const orders = await Order.find({ customerId: userId }).populate('product');
+const getUserOrders = async (email: string) => {
+  const orders = await Order.find({ email }).populate('product');
   return orders;
 };
 
